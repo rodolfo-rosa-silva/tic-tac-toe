@@ -1,59 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import markX from '~/assets/images/markX.png';
+import markO from '~/assets/images/markO.png';
 
 import {
-  Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
-} from 'react-native';
+  Container,
+  Header,
+  InfoPlayers,
+  InfoPlayersColumn,
+  Name,
+  Symbol,
+  Buttons,
+  Slot,
+  Footer,
+  Options,
+  ButtonAction,
+  ButtonActionText,
+} from './styles';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  fileName: {
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-  instructions: {
-    color: '#DDD',
-    fontSize: 14,
-    marginTop: 20,
-    textAlign: 'center',
-  },
-  logo: {
-    height: Dimensions.get('window').height * 0.11,
-    marginVertical: Dimensions.get('window').height * 0.11,
-    width: Dimensions.get('window').height * 0.11 * (1950 / 662),
-  },
-  welcome: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+class Main extends Component {
+  state = {
+    winner: false,
+  };
 
-const Main = () => (
-  <ImageBackground
-    source={{
-      uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png',
-    }}
-    style={styles.container}
-    resizeMode="cover"
-  >
-    <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-    <Image
-      source={{
-        uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/rocketseat_logo.png',
-      }}
-      style={styles.logo}
-      resizeMode="contain"
-    />
-    <Text style={styles.welcome}>Bem-vindo ao Template Básico!</Text>
-    <Text style={styles.instructions}>Essa é a tela principal da sua aplicação =)</Text>
-    <Text style={styles.instructions}>Você pode editar a tela no arquivo:</Text>
-    <Text style={[styles.instructions, styles.fileName]}>src/pages/Main/index.js</Text>
-  </ImageBackground>
-);
+  render() {
+    return (
+      <Container>
+        <Header>
+          <InfoPlayers>
+            <InfoPlayersColumn>
+              <Name>Player 1</Name>
+              <Symbol source={markX} />
+            </InfoPlayersColumn>
+            <InfoPlayersColumn>
+              <Name>Player 2</Name>
+              <Symbol source={markO} />
+            </InfoPlayersColumn>
+          </InfoPlayers>
+        </Header>
+        <Buttons>
+          <Slot />
+          <Slot />
+          <Slot />
+          <Slot />
+          <Slot />
+          <Slot />
+          <Slot />
+          <Slot />
+          <Slot />
+        </Buttons>
+        <Footer>
+          <Options>
+            <ButtonAction>
+              <ButtonActionText>Iniciar novo jogo</ButtonActionText>
+            </ButtonAction>
+          </Options>
+        </Footer>
+      </Container>
+    );
+  }
+}
 
 export default Main;
